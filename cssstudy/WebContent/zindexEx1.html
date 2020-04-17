@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- WebContent/zindexEx1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>z-index 속성</title>
+<!-- z-index 속성:숫자값이 크면 위쪽에 배치. 음수 사용 가능
+	 position 속성과 같이 사용해야 함.
+	 position 속성
+	 	1. static : 차례대로 배치. 기본값. z-index속성 사용 불가.
+	 	2. relative : 앞의 요소의 상대 좌표로 배치.
+	 	3. fixed : 절대좌표. 브라우저 기준. 스크롤시에도 화면에 고정.
+	 	4. absolute : 절대좌표. document 기준. -->
+<style type="text/css">
+/* div 태그를 가로 200px, 세로 200px로 설정하기*/
+	div {width:200px; height:200px; border:1px solid black;}
+	/*
+		p0 : z-index 속성 의미 없음. position 속성 필요함.
+			 cursor:마우스포인터 변경.
+	*/
+	.p0{z-index: 100; background-color: pink; cursor: crosshair;}
+	.p1{z-index: 1; position:fixed; top:10pt; right:0pt; background-color: yellow; cursor: crosshair;}
+	.p2{z-index: 4; position:relative; top:100pt; left:10pt; background-color: gray; cursor: pointer;}
+	.p3{z-index: 2; position:absolute; bottom:10pt; right:100pt;background-color: blue; cursor: move;}
+	.p4{z-index: 3; position:absolute; top:150pt; left:150pt;background-color: red; cursor:help;}
+</style>
+</head>
+
+<body>
+	<div class="p0">p0 box</div>
+	<div class="p1">p1 box</div>
+	<div class="p2">p2 box</div>
+	<div class="p3">p3 box</div>
+	<div class="p4">p4 box</div>
+</body>
+</html>

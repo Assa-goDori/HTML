@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- WebContent/stateEx2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>상태 선택자 예제</title>
+<style type="text/css">
+	/* input 태그가 입력 가능한 상태인 경우  배경을 노란색으로 설정하기*/
+	input:enabled{background-color: yellow; font-size:30px;}
+	/* 입력 가능한 input 태그에 선택된 상태인 경우  배경을 분홍색으로 설정하기*/
+	input:focus{background-color: pink; font-size:15px;}
+	/* 입력 불가능한 input 태그에 선택된 상태인 경우  배경을 검정색, 글자 흰색 설정하기*/
+	input:disabled{background-color: black; color:white;}
+</style>
+</head>
+<body>
+	<h2>입력이 가능한 input 태그</h2>
+	<input type="text">
+	<h2>입력이 불가능한 input 태그</h2>
+	<input type="text" disabled="disabled" value="입력 불가능">
+</body>
+</html>
