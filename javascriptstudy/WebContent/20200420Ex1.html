@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>문제맞추기</title>
+<script type="text/javascript">
+	function getNum() {
+		return Math.floor(Math.random()*100)
+	}
+	op = new Array("+", "-", "/", "%");
+	function getOp() {
+		return op[Math.floor(Math.random()*4)];
+	}
+	cnt = 0;
+	col = 0;
+	while(true) {
+		str = getNum() + getOp() + getNum();
+		ans = prompt(str + "= 식의 정답을 입력하세요(종료:9999)",0);
+		if(ans==9999) break;
+		if(ans==eval(str)) {
+			document.write("<font color='blue' size='10'>정답입니다.</font><br>")
+			col++;
+		} else {
+			document.write("입력한 값은 " + ans + "입니다.")
+			document.write("<font color='red' size='5'>틀렸습니다.</font>");
+			document.write(str + "=" + eval(str) + "입니다.<br>")
+		}
+		cnt++;
+	}
+	document.write(cnt + "문제 중 총" + col + "개를 맞추셨습니다.")
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

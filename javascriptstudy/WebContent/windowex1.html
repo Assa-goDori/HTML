@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!-- /WebContent/windowex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>window 객체 : 메세지 창 3종류</title>
+</head>
+<body>
+<!-- this : 클릭된 radio 버튼
+	this.form : name="f" form 객체. this가 속한 form 객체 의미
+	자바스크립트에서 큰따움표와 작은따움표를 구분하지 않는다.
+ -->
+	<form name="f">
+		<input type="radio" name="dbox" onclick="this.form.echo.value=window.alert('alert 메세지 창 호출')">
+		alert 메세지 창 호출<br>
+		<input type="radio" name="dbox" onclick="this.form.echo.value=window.confirm('confirm 메세지 창 호출')">
+		confirm 메세지 창 호출<br>
+		<input type="radio" name="dbox" onclick="this.form.echo.value=window.prompt('prompt 메세지 창 호출')">
+		prompt 메세지 창 호출<br>
+		<input type="text" name="echo">
+	</form>
+</body>
+</html>

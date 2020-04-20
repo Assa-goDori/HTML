@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function calc() {
+		var a = parseInt(document.f.apple.value)
+		var o = parseInt(document.f.cnt.value)
+		if(eval(a/o)<1)
+			document.f.basketcnt.value=1
+		else if(eval(a%o)==0)
+			document.f.basketcnt.value=eval(a/o)
+		else
+			//document.f.basketcnt.value=eval((a-(a%o))/o+1)	실수를 정수형으로 바꾸는 방법 : parseInt, Math.floor
+			//document.f.basketcnt.value=eval(parseInt(a/o)+1)
+			document.f.basketcnt.value=eval(Math.floor(a/o)+1)
+	}
+</script>
+</head>
+<body>
+	<form name="f">
+		<table>
+			<caption>바구니수 계산하기</caption>
+			<tr>
+				<th>바구니당 사과 갯수</th>
+				<td><select name="cnt">
+					<option value="5">5개</option>
+					<option value="10">10개</option>
+					<option value="15">15개</option>
+					<option value="20">20개</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>사과의 총 갯수</th>
+				<td><input type="text" name="apple"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+				<input type="button" value="바구니수 계산하기" onclick="calc()" style="width:100%; text-align:center;"></td>
+			</tr>
+			<tr>
+				<th>필요한 바구니수</th>
+				<td><input type="text" name="basketcnt"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
