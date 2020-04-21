@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>구구단 출력하기</title>
+<style type="text/css">
+	table {width:100%; border-collapse:collapse;}
+	th, td {border:3px solid #bcbcbc;
+			text-align : center; padding:8px;}
+	th { background-color: #e2e2e2; color : #111111;}
+	td { background-color: #f2f2f2;}
+	caption {
+		color : #111111; font-size:20px; background-color:#f2f2f2;
+	}
+</style>
+<script type="text/javascript">
+	function gugudan() {
+		var dantag = document.getElementById("dandan");	//2 ~ 9까지의 값 중 선택
+		var dan = parseInt(dantag.value);
+		var html = "<table><tr><th>" + dan + "단</th></tr>";	//문자열 객체
+		for(i=2;i<=9;i++) {
+			html += "<tr><td>"+dan+"*"+i+"="+(dan*i)+"</td></tr>"
+		}
+		html += "</table>";
+		console.log(html);
+		//reseult : div태그
+		//innerHTML : div, span, h1 ... 태그 내부에 html 문장을 추가할 수 있음.
+		result.innerHTML = html;
+	}
+	function gugudanAll() {
+		var html = "<table><caption>구구단</caption>";
+		for(i=2;i<=9;i++) {
+			html += "<tr><th>" + i + "단</th></tr>";
+			for(j=2;j<=9;j++) {
+				html += "<tr><td>"+i+"*"+j+"="+(i*j)+"</td></tr>";
+			}
+		}
+		html += "</table>";
+		console.log(html);
+		result.innerHTML = html;
+	}
+</script>
+</head>
+<body>
+	<h3>2~9까지의 숫자를 선택하여 해당 단의 구구단을 출력하기</h3>
+	<select id="dandan">
+		<option>2</option><option>3</option><option>4</option><option>5</option>
+		<option>6</option><option>7</option><option>8</option><option>9</option>
+	</select>
+	<input type="button" value="구구단 출력" onclick="gugudan()">
+	<input type="button" value="모든 구구단 출력" onclick="gugudanAll()"><br><br><br>
+	<div id="result"></div>
+</body></html>	
