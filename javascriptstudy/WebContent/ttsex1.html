@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- /WebContent/ttsex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Text to Speech 연습(tts)</title>
+<script type="text/javascript">
+	//SpeechSynthesisUtterance() : tts 객체
+	var msg = new SpeechSynthesisUtterance();
+	function setlang(t) {
+		msg.lang = t;	//언어설정
+	}
+	function ttsTest() {
+		msg.text = intext.value;	// id가 intext 태그의 value
+		speechSynthesis.speak(msg);
+	}
+</script>
+</head>
+<body>
+<!-- textarea : 여러줄 에디터, input type="text" : 한줄 에디터
+	함수 2개 호출시 ; 으로 분리
+ -->
+	<textarea rows="10" cols="100" id="intext">안녕하세요</textarea>
+	<input type="button" onclick="setlang('ko_KR');ttsTest()" value="읽기">
+	<br>
+</body>
+</html>
