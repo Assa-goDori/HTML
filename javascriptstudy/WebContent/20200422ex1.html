@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>초를 시분초로 환산하기</title>
+<style type="text/css">
+table {width:100%; border-collapse: collapse;}
+ th, td {border:3px solid #bcbcbc;
+   text-align : center; padding:8px;}
+ th { background-color: #e2e2e2; color : #111111;}
+ td { background-color: #f2f2f2;}
+ input {text-align: right;}
+</style>
+<script type="text/javascript">
+	function calc() {
+		var a = parseInt(input.value)
+		console.log(a)
+		h = Math.floor(a/3600)
+		m = Math.floor((a-h*3600)/60)
+		s = a%60
+		hour.value = h
+		minute.value = m
+		second.value = s
+	}
+</script>
+</head>
+<body>
+	<form name="f">
+		<table>
+			<tr><td>입력초</td><td><input type="text" id="input"></td><td><input type="button" value="시분초로환산하기" onclick="calc()"></td></tr>
+			<tr><th>시간</th><th>분</th><th>초</th></tr>
+			<tr><td><input type="text" id="hour"></td><td><input type="text" id="minute"></td><td><input type="text" id="second"></td></tr>
+		</table>
+	</form>
+</body>
+</html>
