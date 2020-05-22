@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>교수 정보 조회하기</title>
+<link rel="stylesheet" href="css/kyh.css" >
+<script type="text/javascript" src="kyh.js"></script>
+<script type="text/javascript">
+	function loadProf(f) {
+		var params = "column=" + f.column.value + "&find=" + f.find.value;
+		sendRequest("kyh.jsp",params,profList,"POST");
+	}
+	function profList() {
+		if(ajax.readyState == 4) {
+			if(ajax.status == 200) {
+				console.log(ajax.responseText);
+				list.innerHTML = ajax.responseText;
+			} else {
+				alert("서버오류:" + ajax.status + ":" + ajax.statusText);
+			}
+		}
+	}
+
+</script>	
+</head>
+<body>
+	<form name="f">
+		<select name="column">
+			<option value="name">이름</option>
+			<option value="id">아이디</option>
+			<option value="position">직급</option>
+		</select>
+		<input type="text" name="find">
+		<input type="button" value="검색" onclick="loadProf(this.form)">
+	</form>
+	<div id="list"></div>
+</body>
+</html>

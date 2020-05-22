@@ -1,0 +1,9 @@
+table { width:100%; border-collapse:collapse; }
+th,td {
+	border : 3px solid #bcbcbc;
+	text-align: center;
+	padding: 8px;
+}
+th {background-color: #B7F0B1; color: #353535;}
+td {background-color: #F2F2F2;}
+input[type=text] {width:500px;}
