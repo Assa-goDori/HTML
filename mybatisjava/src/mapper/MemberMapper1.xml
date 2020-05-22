@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/MemberMapper1.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	id 속성 : 유일한 값. sql 구문을 구별할 수 있는 유일한 코드 값. namespace가 다른 경우는 다른 구문으로 봄. 중복 불가.
+	resultType 속성 : sql 구문의 결과 값을 리턴 해주는 자료형
+					int : sql 구문의 결과 값이 정수형 1개인 경우
+					Member : 컬럼명과 setProperty이름이 같은 경우 자동으로 저장됨
+							mapper.Member 클래스의 객체로 저장됨.
+	#{value} : 값 + 자료형, 자료형에 맞춰 쿼리문 작성해줌	=> 권장사항
+		value 문자열형 : ex) where id=#{value} => where id='admin'
+		value 숫자형 :  ex) where gender=#{value} => where gender=1
+	${value} : 단순한 값의 치환
+		ex) where name like '%${value}%' => where name like '%동%'
+		ex) where name like '%#{value}%' => where name like '%'동'%' => 오류발생
+ -->
+<mapper namespace="member"> <!-- mapper : 루트 태그. 반드시 root 태그로 시작-->
+	<sql id="cols">id, pass pw, name, tel, email, picture, gender</sql> 
+	<select id="count" resultType="int">
+		select count(*) from member
+	</select>
+	<select id="list" resultType="Member">
+		select <include refid="cols" /> from member
+	</select>
+	<select id="selectid" resultType="Member" parameterType="String">
+		select <include refid="cols" /> from member where id=#{value}
+	</select>
+	<select id="selectname" resultType="Member" parameterType="String">
+		select <include refid="cols" /> from member where name like '%${value}%'
+	</select>
+	<select id="selectname2" resultType="Member" parameterType="String">
+		select <include refid="cols" /> from member where name like #{value}
+	</select>
+	<select id="selectnamegender" resultType="Member" parameterType="map">
+		select <include refid="cols" /> from member where name like #{name} and gender=#{gender}
+	</select>
+</mapper>

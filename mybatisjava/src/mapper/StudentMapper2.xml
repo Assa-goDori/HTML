@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/StudentMapper2.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="student2">
+	<select id="select1" resultType="Student" parameterType="map">
+		select * from student
+		<where>
+			<if test="grade != null">grade = #{grade}</if>
+			<if test="studno != null">studno = #{studno}</if>
+			<if test="height != null">height >= #{height}</if>
+		</where>
+	</select>
+	<select id="select2" resultType="Student" parameterType="map">
+		select * from student
+		<choose>
+			<when test="grade != null and height!= null">
+				where grade = #{grade} and height >= #{height}
+			</when>
+			<when test="grade != null">
+				where grade = #{grade}
+			</when>
+			<when test="height != null">
+				where height >= #{height}
+			</when>
+		</choose>
+	</select>
+	<select id="select3" resultType="Student" parameterType="map">
+		select * from student
+		<trim prefix="where" prefixOverrides="AND || OR">
+			<if test="grade != null"> and grade = #{grade}</if>
+			<if test="height != null"> and height >= #{height}</if>
+			<if test="weight != null"> and weight >= #{weight}</if>
+		</trim>
+	</select>
+	<!-- 
+		grade=1, height=180, weight=80
+		select * from student
+		and grade=1 and height>=80 and weight>=80
+		(prefixOverrides => 제일 앞의 and나 or을 where로 변경)
+		where grade=1 and height>=80 and weight>=80
+	 -->
+	 <select id="select4" resultType="Student" parameterType="map">
+	 	select * from student
+	 	<if test="datas != null">
+	 		where ${column} in
+	 			<foreach collection="datas" item="d" separator="," index="i" open="(" close=")">
+	 				#{d}
+	 			</foreach>
+	 	</if>
+	 	order by ${column}
+	 </select>
+	 <!-- 
+	 	datas : 101,201,301
+	 	select * from student
+	 	where major1 in
+	 	(101,201,301)
+	 	collection : List 객체의 키 값
+	 	item : 한 개의 요소를 저장하는 변수 이름
+	 	seperator : 요소들 사이를 구분하는 문자 설정
+	 	index : 인덱스 번호
+	 	open : 첫번째 객체 표시 전에 출력되는 문자 지정
+	 	close : 마지막 객체 표시 후에 출력되는 문자 지정
+	  -->
+</mapper>
