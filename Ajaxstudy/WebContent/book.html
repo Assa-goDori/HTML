@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- /WebContent/book.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>책 목록보기</title>
+<script type="text/javascript" src="ajax.js"></script>
+<script type="text/javascript">
+	function loadBook() {
+		sendRequest("book.xml",null,xmlresult,"GET");
+	}
+	function xmlresult() {
+		if(ajax.readyState==4) {
+			if(ajax.status==200) {
+				booklist();
+			}
+		}
+	}
+	function booklist() {
+		var xmlDoc = ajax.responseXML;
+		var items = xmlDoc.getElementsByTagName("book");
+		var sum = 0;
+		var html = "<table border='1'><tr><th>제목</th><th>저자</th><th>가격</th></tr>";
+		for(var i=0; i<items.length; i++) {
+			var title = items[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+			var author = items[i].getElementsByTagName("author")[0].childNodes[0].nodeValue;
+			var price = items[i].getElementsByTagName("price")[0].childNodes[0].nodeValue;
+			html += "<tr><td>" + title + "</td><td>" + author + "</td><td>" + price + "</td></tr>"
+			sum += parseInt(price);
+		}
+		html += "<tr><td colspan='3' aligin='center'>총 : " + items.length + "권, 총 가격 : " + sum + "원</td></tr></table>"
+		result.innerHTML = "<h2>책 정보 보기</h2>";
+		result.innerHTML += html;
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="교재목록" onclick="loadBook()">
+	<div id="result"></div>
+</body>
+</html>
