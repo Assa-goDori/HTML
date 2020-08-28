@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- /WebContent/barex1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>막대 그래프 그리기</title>
+<script type="text/javascript" src="http://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+<style>
+	canvas {	/* 글씨가 선택되지 않도록 */
+		-moz-user-select : none;		/* 파이어폭스 브라우저 사용할 때 글씨 선택 불가 옵션 */
+		-webkit-user-select : none;		/* 사파리 브라우저 사용할 때 글씨 선택 불가 옵션 */
+		-ms-user-select : none;			/* 익스플로러 브라우저 사용할 때 글씨 선택 불가 옵션 */
+		user-select : none;				/* 표준 브라우저 글씨 선택 불가 옵션*/
+	}
+</style>
+</head>
+<body>
+	<div id="container" style="width:75%;">
+		<canvas id="canvas"></canvas>
+	</div>
+	<script type="text/javascript">
+		var MONTHS=["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]
+		var barChartData = {
+				labels : MONTHS,
+				datasets : [{	//그래프로 표시될 내용을 설정
+					label : '영업부실적',
+					backgroundColor:"#0F90FF",
+					borderColor:"#000000",
+					borderWidth:5,
+					data:[10,15,25,55,-25,65,30,55,28,43,68,52]
+				},{
+					label : '총무부실적',
+					backgroundColor:"#00F0FF",
+					borderColor:"#00F0FF",
+					borderWidth:1,
+					data:[1,5,5,15,-5,25,13,11,2,4,8,10]
+				},{
+					label : '기획부실적',
+					backgroundColor:"#0FFF00",
+					borderColor:"#0FFF00",
+					borderWidth:1,
+					data:[13,52,51,15,-15,20,18,13,21,41,82,70]
+				},]
+		}
+		//그래프 그리기
+		window.onload=function(){
+			//canvas 선택
+			//ctx : 2d 그래프를 그리기 위한 도구
+			var ctx = document.getElementById("canvas").getContext("2d")
+			window.myBar = new Chart(ctx, {
+				type : 'bar',
+				data : barChartData,
+				options : {
+					responsive : true,	//반응형 웹 형태설정
+					legend : {position : 'right'},	//범례 위치 지정
+					title : {
+						display : true,
+						text : '막대그래프 연습'
+					}
+				}
+			})
+		}
+	</script>
+</body>
+</html>
