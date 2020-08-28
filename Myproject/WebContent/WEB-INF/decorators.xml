@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!-- /WEB-INF/decorators.xml -->
+<decorators defaultdir="/layout">
+	<decorator name="main" page="mainlayout.jsp">
+		<pattern>/model2/main/*</pattern>
+	</decorator>
+	<decorator name="member" page="mainlayout.jsp">
+		<pattern>/model2/member/*</pattern>
+	</decorator>
+	<decorator name="board" page="mainlayout.jsp">
+		<pattern>/model2/board/*</pattern>
+	</decorator>
+	<decorator name="car" page="mainlayout.jsp">
+		<pattern>/model2/car/*</pattern>
+	</decorator>
+	<decorator name="repairForm" page="repairFormlayout.jsp">
+		<pattern>/model2/car/repairForm*</pattern>
+		<pattern>/model2/car/fuelForm*</pattern>
+		<pattern>/model2/car/insuranceForm*</pattern>
+		<pattern>/model2/car/othersForm*</pattern>
+		<pattern>/model2/car/mainchartForm*</pattern>
+		<pattern>/model2/car/costchartForm*</pattern>
+		<pattern>/model2/car/eachchartForm*</pattern>
+	</decorator>
+	<decorator name="windowForm" page="mainwindowlayout.jsp">
+		<pattern>/model2/member/login*</pattern>
+		<pattern>/model2/member/join*</pattern>
+		<pattern>/model2/member/id*</pattern>
+		<pattern>/model2/member/pw*</pattern>
+		<pattern>/model2/member/password*</pattern>
+		<pattern>/model2/member/selectcar*</pattern>
+		<pattern>/model2/car/*info*</pattern>
+		<pattern>/model2/car/insert*</pattern>
+		<pattern>/model2/car/update*</pattern>
+	</decorator>
+	<excludes>
+		<pattern>/model2/main/getlist*</pattern>
+		<pattern>/model2/car/monthgraph*</pattern>
+		<pattern>/model2/car/yeargraph*</pattern>
+		<pattern>/model2/car/eachgraph*</pattern>
+		<pattern>/model2/car/repairmain*</pattern>
+		<pattern>/model2/member/check*</pattern>
+	</excludes>
+</decorators>
