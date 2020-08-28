@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200526/keyevent1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>key event 예제</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var num1 = $("h1").text();
+		/*
+		 *  key 이벤트 : 키보드에서 문자가 입력되는 경우
+		 *     keydown   : 키가 눌려질 때(가장 먼저 발생)
+		 *     keypress  : 키가 눌려져 있는 상태(F1, Alt 등 문자들은 이벤트가 발생하지 않음)
+		 *     keyup     : 눌려 있는 키를 놓을 때(가장 나중 발생)
+		 */
+		$("textarea").keydown(function() {
+			var num2 = num1 - $("textarea").val().length;
+			$("#remainnum").html(num2);
+			if(num2 < 0)
+				$("h1").css("color","red");
+			else
+				$("h1").css("color","black");
+		})
+	})
+</script>
+</head>
+<body>
+	<p>글쓰기</p>
+	<h1 id="remainnum">100</h1>
+	<textarea rows="10" cols="70"></textarea>
+</body>
+</html>

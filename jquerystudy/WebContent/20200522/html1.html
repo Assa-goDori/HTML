@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200522/html1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>html 함수 예제</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//$("div").html("<h1>Header</h1>")
+		//$("div").text("<h1>Header</h1>")
+		//첫번째 div 태그의 내용이 <h1>Header-0</h1> 2번째는 <h1>Header-1<h1> 3번째는 <h1>Header-2<h1>로 설정하고 태그 인식 되도록
+		$("div").html(function(i) {
+			return "<h1>Header-" + i + "</h1>"
+		})
+	})
+</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

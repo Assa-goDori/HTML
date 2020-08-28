@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200522/css2.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>css 함수 활용</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var color = ["red","white","purple"]
+		//index는 color의 index가 아니라 h1의 index임
+		/* $("h1").css("color",function(index){
+			return color[index]
+		}).css("backgroundColor","black") */
+		//$("h1") 자바스크립트 버전 : document.getElementsByTagName("h1")
+		$("h1").css({"color",function(index){
+			return color[index]
+		},
+		"backgroundColor":"black"})
+	})
+</script>
+</head>
+<body>
+	<h1>Header-0 : red</h1>
+	<h1>Header-1 : white</h1>
+	<h1>Header-2 : purple</h1>
+</body>
+</html>

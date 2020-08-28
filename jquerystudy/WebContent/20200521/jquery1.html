@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- /jquerystudy/WebContent/20200521/jquery.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Jquery 예제 1</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+/* $(document).ready(function(){...}) : 현재 페이지가 준비 완료된 경우 function() 실행 */
+	$(document).ready(function() {
+		//모든 태그들의 글자색을 분홍색으로 변경
+		$("*").css("color","pink")
+		//p태그의 글자색상을 blue로 설정
+		$("p").css("color","blue")
+		$("h1").css("color","red")
+		//class속성이 item인 태그의 글자색상을 green로 설정
+		$(".item").css("color","green")
+		//id속성이 selected인 태그의 글자색상을 orange로 설정
+		$("#selected").css("color","orange")
+	})
+	$(function() {
+		alert('문서 준비 완료')
+	})
+</script>
+</head>
+<body>
+	<h1>Jquery1<p>Jquery1</p></h1>
+	<h1>Jquery1</h1><p>Jquery1</p>
+	<h1 class="item">Jquery1 class=item</h1>
+	<h1 id="selected">Jquery1 id=selected</h1>
+	<h2>Jquery2</h2>
+	<h3>Jquery3</h3>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200526/table1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>table 함수</title>
+<style type="text/css">
+	table,th,td {
+		border : 3px solid #222222;
+		border-collapse: collapse;
+	}
+	.header { background-color: green; color: yellow;}
+	.reverse { background-color: blue; color: white;}
+	.hover { background:skyblue; color: blue;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("tr").hover(function() {
+			//$(this).index() : tr태그가 첫번째 인경우는 제외
+			if($(this).index() != 0) {
+				$(this).addClass("reverse");
+			}
+		}, function() {
+			$(this).removeClass("reverse");
+		})
+		
+		/* $("th").hover(function() {
+			var index = $(this).parent().children().index(this);
+			$("td").each(function(i,item) {
+				if($(this).index()==index) {
+					$(this).addClass("hover");
+				}
+			})
+		},function() {
+			$("td").removeClass("hover");
+		}) */
+		$("th").hover(function() {
+			var len = $(this).parent().children().length
+			//$(this).parent() : tr 태그
+			//$(this).parent().children() : th 태그들
+			//$(this).parent().children().index(this) : 마우스가 올라온 th 태그의 index
+			//nth-of-type(4n+select) : index는 0부터 시작, nth-of-type은 1부터 시작이므로 +1 해준다.
+			select = $(this).parent().children().index(this) + 1;
+			$("td:nth-of-type(" + len + "n+"+select+")").addClass("hover");
+		},function() {
+			var len = $(this).parent().children().length
+			select = $(this).parent().children().index(this) + 1;
+			$("td:nth-of-type(" + len + "n+"+select+")").removeClass("hover");
+		})
+	})
+</script>
+</head>
+<body>
+	<table>
+		<tr class="header">
+			<th>이름</th>
+			<th>혈액형</th>
+			<th>지역</th>
+			<th>성별</th>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>A형</td>
+			<td>수원</td>
+			<td>남자</td>
+		</tr>
+		<tr>
+			<td>김삿갓</td>
+			<td>B형</td>
+			<td>오산</td>
+			<td>남자</td>
+		</tr>
+		<tr>
+			<td>성춘향</td>
+			<td>O형</td>
+			<td>광명</td>
+			<td>여자</td>
+		</tr>
+		<tr>
+			<td>김삿갓</td>
+			<td>AB형</td>
+			<td>광주</td>
+			<td>남자</td>
+		</tr>
+		<tr>
+			<td>이몽룡</td>
+			<td>AB형</td>
+			<td>대구</td>
+			<td>남자</td>
+		</tr>
+		<tr>
+			<td>향단이</td>
+			<td>A형</td>
+			<td>부산</td>
+			<td>여자</td>
+		</tr>
+		
+	</table>
+</body>
+</html>

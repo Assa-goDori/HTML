@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>클릭시 h1 태그 추가하기</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var i = 1;
+		$("h1").click(function() {
+			$("#wrap").append("<h1>" + (i++) + "-" + $(this).html() + "</h1>");
+		})
+	})
+</script>
+</head>
+<body>
+	<hr>
+	<div id="wrap">
+		<h1>Header</h1>
+	</div>
+	<hr>
+</body>
+</html>

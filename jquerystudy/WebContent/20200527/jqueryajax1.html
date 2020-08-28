@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200527/jqueryajax1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Jquery를 이용한 ajax 연습</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn1").click(function() {
+			$.ajax("ajax1-1.jsp",{
+				success : function(data) {
+					$("body").append(data);
+				},
+				error : function(e) {
+					alert("서버 오류" + e.status);
+				}
+			})
+		})
+		$("#rmbtn1").click(function() {
+			$("h1").get(-1).remove();	//get(-1) : 뒤쪽 인덱스부터
+			//$("h1:last").remove();
+			//$("h1").eq(-1).remove();
+		})
+		$("#btn2").click(function() {
+			//파라미터가 있는 경우 : ajax({키값 : 내용})으로 전달하기	키값 : url, type, data, success, error
+			//파라미터 전달 방식. 1.변수선언을 통한 전달   2. 객체를 통한 전달
+			//var param = "name=홍길동&age=20";
+			var param = {name:"홍길동",age:20};
+			$.ajax({
+				url : "ajax1-2.jsp",
+				type : "POST",
+				data : param,
+				success : function(data) {
+					$("body").append(data);
+				},
+				error : function(e) {
+					alert("서버 오류" + e.status);
+				}
+			})
+		})
+		$("#rmbtn2").click(function() {
+			$("h2").get(-1).remove();
+		})
+	})
+</script>
+</head>
+<body>
+	<button id="btn1">ajax1-1.jsp 호출</button>
+	<button id="rmbtn1">ajax1-1.jsp 추가된 내용 제거</button>
+	<button id="btn2">ajax1-2.jsp 호출</button>
+	<button id="rmbtn2">ajax1-2.jsp 추가된 내용 제거</button>
+</body>
+</html>

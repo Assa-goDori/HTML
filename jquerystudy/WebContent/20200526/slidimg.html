@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200526/slidimg.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>슬라이드 이미지 만들기</title>
+<style type="text/css">
+	* {
+		margin : 0px;
+		padding : 0px;
+	}
+	.animation_canvas {
+		overflow : hidden;
+		position: relative;
+		width : 600px;
+		height: 400px;
+	}
+	.slider_panel {
+		width: 3000px;
+		position: relative;
+	}
+	.slider_image {
+		float: left; /* float : 배치 방법*/
+		width : 600px;
+		height: 400px;
+	}
+	.slider_text_panel {
+		position: absolute;
+		top : 100px;
+		left : 50px;
+	}
+	.slider_text {
+		color : white;
+		position: absolute;
+		width : 250px;
+		height : 150px;
+	}
+	.control_panel {
+		position : absolute;
+		top : 380px;
+		left : 270px;
+		height: 13px;
+		overflow: hidden;	/* 점 하나만 표현하고 나머지는 숨김 */
+	}
+	.control_button {
+		width: 12px;
+		height: 46px;
+		position: relative;
+		float: left;
+		cursor : pointer;
+		background: url('point_button.png');	/* background 이미지 불러오기 설정*/
+	}
+	.control_button:hover {top:-16px;}	/* control_button의 hover 이벤트 설정*/
+	.control_button.select {top:-31px;} /* control_button 중 클래스가 select인 버튼의 css 설정*/
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".control_button").each(function(index) {	//idx=0,1,2,3,4 각각의 태그에 속성 등록
+			$(this).attr("idx",index);
+		}).click(function() {
+			var index = $(this).attr("idx");
+			moveSlider(index);
+		})
+		$(".slider_text").css("left",-300).each(function(index) {
+			$(this).attr("idx",index);
+		})
+		moveSlider(0);	//초기화면은 첫번째 이미지 출력
+		var idx = 0;
+		
+		//화면이 로드 되자 마자 자동으로 2초 간격으로 이미지를 움직이도록 설정하기
+		var max = false;
+		setInterval(function(){	
+			if(!max) {
+				idx++;
+				if(idx==4) max=true;
+			} else {
+				idx--;
+				if(idx==0) max=false;
+			}
+			moveSlider(idx);
+		},2000)
+	})
+	
+	function moveSlider(index) {
+		//moveLeft : 선택된 이미지만 화면에 보여줌.
+		var moveLeft = -(index*600);
+		$(".slider_panel").animate({left:moveLeft},'slow');
+		$(".control_button[idx=" + index + "]").addClass("select");
+		$(".control_button[idx!=" + index + "]").removeClass("select");
+		$(".slider_text[idx=" + index + "]").show().animate({left:0},'slow');
+		$(".slider_text[idx!=" + index + "]").hide("slow",function(){
+			$(this).css("left",-300);
+		})
+	}
+</script>
+</head>
+<body>
+	<h1>슬라이드 이미지 구현하기</h1>
+	<div class="animation_canvas">
+		<div class="slider_panel">
+			<img src="Desert.jpg" class="slider_image" />
+			<img src="Hydrangeas.jpg" class="slider_image" />
+			<img src="Jellyfish.jpg" class="slider_image" />
+			<img src="Koala.jpg" class="slider_image" />
+			<img src="Lighthouse.jpg" class="slider_image" />
+		</div>
+		<div class="slider_text_panel">
+			<div class="slider_text">
+				<h1>사막 이미지</h1>
+				<p>더운 사막</p>
+			</div>
+			<div class="slider_text">
+				<h1>수국 이미지</h1>
+				<p>물에서 자라는 수생식물</p>
+			</div>
+			<div class="slider_text">
+				<h1>해파리 이미지</h1>
+				<p>해파리는 독이 있다</p>
+			</div>
+			<div class="slider_text">
+				<h1>코알라 이미지</h1>
+				<p>코알라는 유칼리나뭇잎만 먹는다</p>
+			</div>
+			<div class="slider_text">
+				<h1>등대 이미지</h1>
+				<p>등대이미지</p>
+			</div>
+		</div>
+	</div>
+	<div class="control_panel">
+		<div class="control_button"></div>
+		<div class="control_button"></div>
+		<div class="control_button"></div>
+		<div class="control_button"></div>
+		<div class="control_button"></div>
+	</div>
+</body>
+</html>

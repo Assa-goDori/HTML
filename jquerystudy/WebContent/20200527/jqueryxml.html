@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200527/jqueryxml.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>XML 연습</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(function() {
+			$.ajax("person.xml",{
+				success : function(data) {
+					$(data).find("person").each(function() {	//xml문서는 $(data)를 통해 자동으로 parsing 처리
+						//$(this) : person태그
+						name = "<li>"+$(this).find("name").text() + "</li>"
+						gender = "<li>"+$(this).find("gender").text() + "</li>"
+						part = "<li>"+$(this).find("part").text() + "</li>"
+						$("#person").append("<ul>"+name+gender+part+"</ul>");
+					})
+				},
+				error : function(e) {
+					alert("ajax 오류 : " + e.status);
+				}
+			})
+		})
+		//==='전체 구'버튼을 클릭 시===
+		//address.xml을 읽어서 하나의 ul태그에 출력하기
+		$("#allbtn").click(function() {
+			$("#states").html("");
+			$.ajax("address.xml",{
+				success : function(data) {
+					$("#states").append("<ul>");
+					$(data).find("state").each(function() {
+						state = "<li>" + $(this).text() + "</li>";
+						$("#states").append(state);
+					})
+					$("#states").append("</ul>");
+				},
+				error : function(e) {
+					alert("ajax 오류 " + e.status);
+				}
+			})
+		})
+	})
+	
+	function statebtn(st) {
+		$("#states").html("");
+		$.ajax("address.xml",{
+			success : function(data) {
+				$("#states").append("<ul>");
+				$(data).find(st).find("state").each(function() {
+					state = "<li>" + $(this).text() + "</li>";
+					$("#states").append(state);
+				})
+				$("#states").append("</ul>");
+			},
+			error : function(e) {
+				alert("ajax 오류 " + e.status);
+			}
+		})
+	}
+</script>
+</head>
+<body>
+	<button id="btn">XML 연습</button>
+	<div id="person"></div>
+	<button id="allbtn">전체 구</button>
+	<button onclick="statebtn('east')">동쪽 구</button>
+	<button onclick="statebtn('west')">서쪽 구</button>
+	<button onclick="statebtn('south')">남쪽 구</button>
+	<button onclick="statebtn('north')">북쪽 구</button>
+	<div id="states"></div>
+</body>
+</html>

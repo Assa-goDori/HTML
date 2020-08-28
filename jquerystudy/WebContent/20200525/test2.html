@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>새로생겨난 태그 클릭시 h1 태그 추가하기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		/* $(document).on("click","h1",function(){
+			var len = $("h1").length;
+			var thtml = $(this).html();
+			$("#wrap").append("<h1>" + len + "-" + thtml + "</h1>");
+		}) */
+		$("#wrap").click(function() {
+		var len = $("h1").length;	//<h1>태그 갯수
+		var thtml = $("h1",this).html();
+		$("#wrap").append("<h1>" + len + "-" + thtml + "</h1>");
+		}) 
+	})
+</script>
+</head>
+<body>
+	<hr>
+	<div id="wrap">
+		<h1>Header</h1>
+	</div>
+	<hr>
+</body>
+</html>

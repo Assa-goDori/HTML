@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200525/event6.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>선 그리기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		//$(canvas).on({
+		$("#canvas").on({
+			mousedown : function(event) {
+				var position = $(this).offset();
+				var x = event.pageX - position.left;
+				var y = event.pageY - position.top;
+				context.beginPath();	//시작점, 시작 위치
+				context.moveTo(x,y);	//시작점을 저장
+			},
+			mouseup : function(event) {
+				var position = $(this).offset();
+				var x = event.pageX - position.left;
+				var y = event.pageY - position.top;
+				context.lineTo(x,y);	//시작지점부터 현재 x,y까지 선그리기
+				context.stroke();	//처리하고나서 x,y값(자원)의 초기화
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<canvas id="canvas" width="700" height="400" style="border:3px solid black"></canvas>
+</body>
+</html>

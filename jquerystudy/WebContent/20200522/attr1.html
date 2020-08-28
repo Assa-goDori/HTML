@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- /WebContent/20200522/attr1.html -->
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>attr 함수 이용하기</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//모든 이미지 태그의 width를 200으로 설정
+		//attr : 속성 등록, 조회
+		//$("img").attr("width",300)
+		//alert($("img").attr("width"))
+		//이미지 크기를 100,200,300으로 설정
+		/* $("img").attr("width",function(index) {
+			return (index+1)*100
+		}) */
+		//이미지 크기를 100,200,300으로, height는 200으로 설정
+		$("img").attr({"height":200, "width":function(i) { return (i+1)*100} })
+		$("img").removeAttr("src")
+	})
+</script>
+</head>
+<body>
+	<img src="Koala.jpg" />
+	<img src="Desert.jpg"/>
+	<img src="Hydrangeas.jpg"/>
+	<img src="Jellyfish.jpg"/>
+	<img src="Lighthouse.jpg"/>
+</body>
+</html>
